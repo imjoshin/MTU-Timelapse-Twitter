@@ -27,6 +27,7 @@ def main():
 
         #post tweet
         degrees, weather = getWeather()
+        weather = "%s%s" % ("" if weather.endswith("s") else "a ", weather)
         fileurl = "http://joshjohnson.io/" + filename.replace("../", "")
         tweet = settings.TWEET % (random.choice(settings.TWEETINTRO), degrees, weather, fileurl)
         api.update_with_media(filename, status=tweet)

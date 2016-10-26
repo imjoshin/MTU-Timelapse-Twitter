@@ -5,4 +5,4 @@ TWEETINTRO = [
     "Currently it's"
 ]
 
-TWEET = "%s %d degrees with a %s in Houghton, Michigan! %s"
+TWEET = "%s %d degrees with %s in Houghton, Michigan! %s"
