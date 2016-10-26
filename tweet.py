@@ -1,21 +1,38 @@
-import tweepy, random, urllib, json, time, os
+import tweepy, random, urllib, json, datetime, time, os
 import settings, auth
 
 def main():
-    api = getAPI()
+    while(1):
+        #check if between 13:00 and 13:10
+        now = datetime.datetime.now()
+        if(now.hour != 13 or now.minute >= 10):
+            time.sleep(60 * 10)
+            continue
 
-    day = time.strftime("%m-%d-%y")
+        #in valid time, compose tweet
+        api = getAPI()
 
-    for i in range(0, 13):
-        filename = "../MTU-Timelapse/cam/%s/12-%s.jpg" % (day, str(i * 5).zfill(2))
-        if(os.path.isfile(filename)):
-            break
+        #find file
+        day = time.strftime("%m-%d-%y")
+        for i in range(0, 13):
+            if(i == 12):
+                filename = "" #no file on the 12 hour found, just skip today
+                break
+            filename = "../MTU-Timelapse/cam/%s/12-%s.jpg" % (day, str(i * 5).zfill(2))
+            if(os.path.isfile(filename)):
+                break
 
-    degrees, weather = getWeather()
-    tweet = settings.TWEET % (random.choice(settings.TWEETINTRO), degrees, weather)
-    #api.update_with_media(filename, status=tweet)
-    print "Posted tweet '%s' with image '%s'" % (tweet, filename)
+        if(filename == ""):
+            continue
 
+        #post tweet
+        degrees, weather = getWeather()
+        fileurl = "http://joshjohnson.io/" + filename.replace("../", "")
+        tweet = settings.TWEET % (random.choice(settings.TWEETINTRO), degrees, weather, fileurl)
+        #api.update_with_media(filename, status=tweet)
+        print tweet
+
+        time.sleep(60 * 10)
 
 def getAPI():
     authorization = tweepy.OAuthHandler(auth.CKEY, auth.CSECRET)
