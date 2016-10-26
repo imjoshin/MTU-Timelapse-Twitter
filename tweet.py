@@ -12,7 +12,6 @@ def main():
             posted = [0, 0, 0]
 
         #in valid time, compose tweet
-        #api = getAPI()
 
         if(now.hour >= 4 and now.hour < 10 and not posted[0]):
             found, filename = check("sunrise")
@@ -84,7 +83,7 @@ def post(event, filename):
         intros = settings.SETINTRO
 
     tweet = settings.TWEET % (random.choice(intros), degrees, weather, fileurl)
-    #api.update_with_media(filename, status=tweet)
+    api.update_with_media(filename, status=tweet)
     print tweet
 
 
