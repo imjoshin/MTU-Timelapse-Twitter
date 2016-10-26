@@ -29,7 +29,7 @@ def main():
         degrees, weather = getWeather()
         fileurl = "http://joshjohnson.io/" + filename.replace("../", "")
         tweet = settings.TWEET % (random.choice(settings.TWEETINTRO), degrees, weather, fileurl)
-        #api.update_with_media(filename, status=tweet)
+        api.update_with_media(filename, status=tweet)
         print tweet
 
         time.sleep(60 * 10)
