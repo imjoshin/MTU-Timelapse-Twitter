@@ -1,4 +1,4 @@
-import tweepy, random, urllib, json, datetime, time, os
+sk  import tweepy, random, urllib, json, datetime, time, os
 import settings, auth
 from PIL import Image
 
@@ -57,7 +57,7 @@ def check(event):
                 m += 60
                 h -= 1
 
-            filename = "../MTU-Timelapse/cam/%s-%s-%s/%s-%s.jpg" % (str(now.month).zfill(2), str(25).zfill(2), str(now.year)[-2:], str(h).zfill(2), str(m).zfill(2))
+            filename = "../MTU-Timelapse/cam/%s-%s-%s/%s-%s.jpg" % (str(now.month).zfill(2), str(now.day).zfill(2), str(now.year)[-2:], str(h).zfill(2), str(m).zfill(2))
             if(not os.path.isfile(filename)):
                 continue
 
