@@ -1,4 +1,4 @@
-sk  import tweepy, random, urllib, json, datetime, time, os
+import tweepy, random, urllib, json, datetime, time, os
 import settings, auth
 from PIL import Image
 
