@@ -107,7 +107,11 @@ def getAverageRGB(file):
     count = 0
     newsize = 640, 360
     image = Image.open(file)
-    image.thumbnail(newsize, Image.ANTIALIAS)
+    try:
+        image.thumbnail(newsize, Image.ANTIALIAS)
+    except:
+        print "Could not resize %s" % file
+        
     for channel in range(3):
         pixels = image.getdata(band=channel)
 

@@ -1,5 +1,5 @@
 RISEINTRO = [
-    "This morning, it's",
+    "This morning it's",
     "Good morning! Currently it is",
     "Rise and shine! It's"
 ]
